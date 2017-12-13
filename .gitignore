@@ -1,1 +1,6 @@
 build
+ipch
+*.opensdf
+*.sdf
+*.suo
+GameTypeInfo.h
