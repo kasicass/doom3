@@ -385,6 +385,17 @@ void Sys_Quit( void ) {
 Sys_Printf
 ==============
 */
+
+#define MAXPRINTMSG 4096
+void Sys_OutputDebugString(const char* s) {
+	char msg[MAXPRINTMSG];
+
+	idStr::snPrintf(msg, MAXPRINTMSG-1, "[doom3] %s", s);
+	msg[sizeof(msg)-1] = '\0';
+
+	OutputDebugString(msg);
+}
+
 #define MAXPRINTMSG 4096
 void Sys_Printf( const char *fmt, ... ) {
 	char		msg[MAXPRINTMSG];
@@ -396,7 +407,7 @@ void Sys_Printf( const char *fmt, ... ) {
 	msg[sizeof(msg)-1] = '\0';
 
 	if ( win32.win_outputDebugString.GetBool() ) {
-		OutputDebugString( msg );
+		Sys_OutputDebugString(msg);
 	}
 	if ( win32.win_outputEditString.GetBool() ) {
 		Conbuf_AppendText( msg );
@@ -418,7 +429,7 @@ void Sys_DebugPrintf( const char *fmt, ... ) {
 	msg[ sizeof(msg)-1 ] = '\0';
 	va_end( argptr );
 
-	OutputDebugString( msg );
+	Sys_OutputDebugString( msg );
 }
 
 /*
@@ -432,7 +443,7 @@ void Sys_DebugVPrintf( const char *fmt, va_list arg ) {
 	idStr::vsnPrintf( msg, MAXPRINTMSG-1, fmt, arg );
 	msg[ sizeof(msg)-1 ] = '\0';
 
-	OutputDebugString( msg );
+	Sys_OutputDebugString( msg );
 }
 
 /*
