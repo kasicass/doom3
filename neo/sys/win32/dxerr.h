@@ -65,7 +65,8 @@ HRESULT WINAPI DXTraceW( _In_z_ const WCHAR* strFile, _In_ DWORD dwLine, _In_ HR
 // Helper macros
 //
 //--------------------------------------------------------------------------------------
-#if defined(DEBUG) || defined(_DEBUG)
+// #if defined(DEBUG) || defined(_DEBUG)
+#if 0 // TODO(kasicass)
 #define DXTRACE_MSG(str)              DXTrace( __FILEW__, (DWORD)__LINE__, 0, str, false )
 #define DXTRACE_ERR(str,hr)           DXTrace( __FILEW__, (DWORD)__LINE__, hr, str, false )
 #define DXTRACE_ERR_MSGBOX(str,hr)    DXTrace( __FILEW__, (DWORD)__LINE__, hr, str, true )
